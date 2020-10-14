@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Column from "../components/Column";
 
 function App(props) {
   const [board, setBoard] = useState({
@@ -29,21 +30,7 @@ function App(props) {
   return (
     <div className="container">
       {board.columns.map((column) => (
-        <div
-          className="column"
-          // onDragOver={(e) => onDragOver(e)}
-          // onDrop={(e) => onDrop(e, "notCompleted")}
-        >
-          {column.tasks.map((task) => (
-            <span
-              draggable
-              key={task.id}
-              // onDragStart={(e) => onDragStart(e, task.id)}
-            >
-              {task.task}
-            </span>
-          ))}
-        </div>
+        <Column name={column.name} tasks={column.tasks}></Column>
       ))}
     </div>
   );
