@@ -3,7 +3,7 @@ import "./App.css";
 
 function App(props) {
   const [tasks, setTasks] = useState({
-    column: [
+    columns: [
       {
         name: "notCompleted",
         tasks: [
