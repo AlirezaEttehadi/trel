@@ -2,37 +2,40 @@ import React, { useState } from "react";
 import "./App.css";
 
 function App(props) {
-  let [tasks, setTasks] = useState({
-    notCompleted: [
-      { id: 1, task: "Go gym", status: "notCompleted" },
-      { id: 3, task: "Go bookstore", status: "notCompleted" },
-      { id: 4, task: "Go shopping", status: "notCompleted" },
-      { id: 6, task: "Go pool", status: "notCompleted" },
-    ],
-    completed: [
-      { id: 2, task: "Go home", status: "completed" },
-      { id: 5, task: "Go school", status: "completed" },
+  const [tasks, setTasks] = useState({
+    column: [
+      {
+        name: "notCompleted",
+        tasks: [
+          { id: 1, task: "Go gym", status: "notCompleted" },
+          { id: 3, task: "Go bookstore", status: "notCompleted" },
+          { id: 4, task: "Go shopping", status: "notCompleted" },
+          { id: 6, task: "Go pool", status: "notCompleted" },
+        ],
+      },
     ],
   });
 
-  let onDragOver = (ev) => ev.preventDefault();
+  const onDragOver = (ev) => ev.preventDefault();
 
-  let onDragStart = (ev, id) => {
+  const onDragStart = (ev, id) => {
     ev.dataTransfer.setData("id", id);
   };
 
-  let onDrop = (ev, category) => {
-    let id = ev.dataTransfer.getData("id");
+  const onDrop = (ev, category) => {
+    const id = ev.dataTransfer.getData("id");
 
     setTasks({
       completed: [...tasks.completed, ...tasks.notCompleted].filter((task) => {
         if (category === "completed" || task.id !== id) return task;
         return null;
       }),
-      notCompleted: [...tasks.completed, ...tasks.notCompleted].filter((task) => {
-        if (category === "notCompleted" || task.id !== id) return task;
-        return null;
-      }),
+      notCompleted: [...tasks.completed, ...tasks.notCompleted].filter(
+        (task) => {
+          if (category === "notCompleted" || task.id !== id) return task;
+          return null;
+        }
+      ),
     });
   };
 
