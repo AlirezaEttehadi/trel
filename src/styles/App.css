@@ -16,7 +16,7 @@
   overflow: auto;
 }
 
-span {
+.task {
   padding: 2rem;
   border: crimson 1px solid;
   margin: 1rem;
